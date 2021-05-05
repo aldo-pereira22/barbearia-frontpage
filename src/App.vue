@@ -9,7 +9,7 @@
 
     <div class="container">
 
-      <form @submit.prevent="salvar()">
+      <form @submit.prevent="salvar(), this.listar()">
 
           <label>NOME</label>
           <input type="text" placeholder="Digite seu nome" required v-model="pessoa.nome" >
@@ -29,13 +29,11 @@
       <table>
 
         <thead>
-
           <tr>
             <th>NOME</th>
             <th>CPF</th>
             <th>E-mail</th>
           </tr>
-
         </thead>
 
         <tbody>
@@ -46,8 +44,9 @@
             <td>{{ pessoa.cpf }}</td>
             <td>{{ pessoa.email }}</td>
             <td>
-              <button @click="editar(pessoa)" class="waves-effect btn-small blue darken-1"><i class="material-icons">Editar</i></button>
-              <button @click="remover(pessoa)" class="waves-effect btn-small red darken-1"><i class="material-icons">Excluir</i></button>
+              <button @click="editar(pessoa), this.listar()" class="waves-effect btn-small blue darken-1"><i class="material-icons">Editar </i></button>
+              <button @click="remover(pessoa), this.listar()" class="waves-effect btn-small red darken-1"><i class="material-icons">Excluir </i></button>
+
             </td>
 
           </tr>
@@ -96,14 +95,13 @@
       })
       },
 
-      
       salvar(){
         if(this.senha1 === this.senha2){
 
           this.pessoa.senha = this.senha1
           if(!this.pessoa.id){
             Pessoa.salvar(this.pessoa)
-            alert('salvo com sucesso!')
+            alert('salvo com sucesso! ')
             this.pessoa = {}
             this.senha1=""
             this.senha2=""
@@ -114,10 +112,8 @@
             this.pessoa = {}
             this.senha1=""
             this.senha2=""
-
+            this.pessoa.id()
           }
-
-            this.listar().listar()
 
         }else {
           alert("As senhas não combinam")
@@ -134,9 +130,7 @@
         alert("Cliente removido")
         this.listar()
         
-      }
-
-  
+      } 
     }
   }
  
