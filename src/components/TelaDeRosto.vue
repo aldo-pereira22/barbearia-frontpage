@@ -21,6 +21,10 @@
 
 <style scoped>
 
+    #container {
+        background-color: blue;
+    }
+
     #fundo{
         background-color: blue;
     }
